@@ -1,0 +1,18 @@
+import numpy as np
+
+a = np.random.randint(1, 10, (3, 3))
+b = np.random.randint(1, 10, (3, 3))
+
+print("Matrix A:")
+print(a)
+
+print("Matrix B:")
+print(b)
+# Matrix Addition
+add = a + b
+print("Addition of matrices:")
+print(add)
+# Matrix Multiplication
+mul = a @ b
+print("Multiplication of matrices:")
+print(mul)
