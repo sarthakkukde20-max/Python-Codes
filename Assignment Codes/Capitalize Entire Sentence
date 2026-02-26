@@ -1,0 +1,10 @@
+def capitalize_lines():
+    print("Enter lines (press Enter to stop):")
+    
+    while True:
+        line = input()
+        if line == "":
+            break
+        print(line.upper())
+
+capitalize_lines()
