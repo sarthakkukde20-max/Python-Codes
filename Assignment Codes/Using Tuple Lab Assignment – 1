@@ -1,0 +1,22 @@
+# Take input from user
+numbers = tuple(map(int, input("Enter integers separated by space: ").split()))
+
+# a) Total number of items
+print("Total items:", len(numbers))
+
+# b) Last item
+print("Last item:", numbers[-1])
+
+# c) Reverse order
+print("Reversed Tuple:", numbers[::-1])
+
+# d) Check if 5 exists
+if 5 in numbers:
+    print("Yes")
+else:
+    print("No")
+
+# e) Remove first and last, sort remaining
+remaining = numbers[1:-1]
+sorted_remaining = tuple(sorted(remaining))
+print("Sorted after removing first and last:", sorted_remaining)
