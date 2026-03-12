@@ -1,0 +1,28 @@
+# Program to copy python file content without comments
+source = input("Enter source python file name: ")
+destination = input("Enter destination file name: ")
+
+with open(source, "r") as file1:
+    lines = file1.readlines()
+
+new_lines = []
+
+# removing comment lines
+for line in lines:
+    line = line.strip()
+    if not line.startswith("#") and line != "":
+        new_lines.append(line + "\n")
+
+# writing into destination file
+with open(destination, "w") as file2:
+    file2.writelines(new_lines)
+
+# printing source file content
+print("\nSource File Content:")
+with open(source, "r") as file1:
+    print(file1.read())
+
+# printing destination file content
+print("\nDestination File Content (without comments):")
+with open(destination, "r") as file2:
+    print(file2.read())
