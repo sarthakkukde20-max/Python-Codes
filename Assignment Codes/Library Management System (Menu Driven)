@@ -1,0 +1,113 @@
+import java.util.*;
+
+class Book {
+    int id;
+    String title;
+    boolean issued;
+
+    Book(int id, String title) {
+        this.id = id;
+        this.title = title;
+        this.issued = false;
+    }
+}
+
+class Member {
+    int memberId;
+    String name;
+
+    Member(int memberId, String name) {
+        this.memberId = memberId;
+        this.name = name;
+    }
+}
+
+class Library {
+    ArrayList<Book> books = new ArrayList<>();
+
+    void addBook(int id, String title) {
+        books.add(new Book(id, title));
+        System.out.println("Book Added Successfully!");
+    }
+
+    void issueBook(int id) {
+        for(Book b : books) {
+            if(b.id == id && !b.issued) {
+                b.issued = true;
+                System.out.println("Book Issued!");
+                return;
+            }
+        }
+        System.out.println("Book not available!");
+    }
+
+    void returnBook(int id) {
+        for(Book b : books) {
+            if(b.id == id && b.issued) {
+                b.issued = false;
+                System.out.println("Book Returned!");
+                return;
+            }
+        }
+        System.out.println("Invalid Book ID!");
+    }
+
+    void displayBooks() {
+        for(Book b : books) {
+            System.out.println("ID: " + b.id +
+                    " Title: " + b.title +
+                    " Status: " + (b.issued ? "Issued" : "Available"));
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Library lib = new Library();
+
+        int choice;
+
+        do {
+            System.out.println("\n--- Library Menu ---");
+            System.out.println("1. Add Book");
+            System.out.println("2. Issue Book");
+            System.out.println("3. Return Book");
+            System.out.println("4. Display Books");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+
+            choice = sc.nextInt();
+
+            switch(choice) {
+                case 1:
+                    System.out.print("Enter Book ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Title: ");
+                    String title = sc.nextLine();
+                    lib.addBook(id, title);
+                    break;
+
+                case 2:
+                    System.out.print("Enter Book ID: ");
+                    lib.issueBook(sc.nextInt());
+                    break;
+
+                case 3:
+                    System.out.print("Enter Book ID: ");
+                    lib.returnBook(sc.nextInt());
+                    break;
+
+                case 4:
+                    lib.displayBooks();
+                    break;
+
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+            }
+
+        } while(choice != 5);
+    }
+}
