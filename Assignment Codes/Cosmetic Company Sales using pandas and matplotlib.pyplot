@@ -1,0 +1,55 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# read dataset
+data = pd.read_csv("company_sales_data.csv")
+
+months = data['month_number']
+
+# a) Total profit line plot
+plt.plot(months, data['total_profit'])
+plt.title("Total Profit per Month")
+plt.xlabel("Month")
+plt.ylabel("Profit")
+plt.show()
+
+
+# b) Multiline plot for all products
+plt.plot(months, data['facecream'], label='Face Cream')
+plt.plot(months, data['facewash'], label='Face Wash')
+plt.plot(months, data['toothpaste'], label='Toothpaste')
+plt.plot(months, data['bathingsoap'], label='Bathing Soap')
+plt.plot(months, data['shampoo'], label='Shampoo')
+plt.plot(months, data['moisturizer'], label='Moisturizer')
+
+plt.legend()
+plt.title("Product Sales Data")
+plt.show()
+
+
+# c) Bar chart facecream & facewash
+plt.bar(months, data['facecream'], label="Face Cream")
+plt.bar(months, data['facewash'], label="Face Wash")
+
+plt.title("Face Cream vs Face Wash")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.legend()
+plt.show()
+
+
+# d) Pie chart yearly sales
+sales = [
+data['facecream'].sum(),
+data['facewash'].sum(),
+data['toothpaste'].sum(),
+data['bathingsoap'].sum(),
+data['shampoo'].sum(),
+data['moisturizer'].sum()
+]
+
+labels = ['Facecream','Facewash','Toothpaste','Soap','Shampoo','Moisturizer']
+
+plt.pie(sales, labels=labels, autopct='%1.1f%%')
+plt.title("Yearly Product Sales")
+plt.show()
